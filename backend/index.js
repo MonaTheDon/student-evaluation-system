@@ -11,6 +11,16 @@ import cors from 'cors';
 const app=express();
 app.use(express.json());
 
+app.use(express.static(path.join(__dirname, ".frontend/dist")));
+app.get("*", function (_, res) {
+  res.sendFile(
+    path.join(__dirname, "./frontend/dist/index.html"),
+    function (err) {
+      res.status(500).send(err);
+    }
+  );
+});
+
 //middleware for handling cors policy
 //allow all origings with deffaukt of cors(*)
 app.use(cors());
