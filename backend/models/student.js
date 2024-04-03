@@ -5,10 +5,6 @@ const studentSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  student_id: {
-    type: String,
-    required: true,
-  },
   mentor_id:{
     type: String,
     required: true,
@@ -27,7 +23,7 @@ const studentSchema = mongoose.Schema({
   },
   email: {
     lowercase: true,
-    required: true,
+    required: false,
     type: String,
     trim: true,
     validate: {
@@ -39,10 +35,10 @@ const studentSchema = mongoose.Schema({
       message: "Please enter a valid email address",
     },
   },
-  evaluated: {
-    type: Boolean,
-    default: false,
-  },
+  // evaluated: {
+  //   type: Boolean,
+  //   default: false,
+  // },
 });
 
 export const Student = mongoose.model("Student", studentSchema);
