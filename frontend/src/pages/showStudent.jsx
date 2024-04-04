@@ -12,7 +12,7 @@ const showStudent = () => {
     useEffect(() => {
       setLoading(true);
       axios
-        .get(`http://localhost:5555/students/${id}`)
+        .get(`${window.location.origin}/students/${id}`)
         .then((response) => {
           setStudents(response.data);
           setLoading(false);

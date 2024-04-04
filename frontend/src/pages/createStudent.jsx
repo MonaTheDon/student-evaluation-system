@@ -33,7 +33,7 @@ const CreateStudent = () => {
       const mappedMentorID = mentorMap[mentor_id];
   
       // Check if the mentor has already 4 students
-      axios.get(`http://localhost:5555/mentors/${mappedMentorID}`) // Use mapped _id here
+      axios.get(`${window.location.origin}/mentors/${mappedMentorID}`) // Use mapped _id here
         .then(response => {
             console.log('Mentor Data:', response.data);
             const mentorStudents = response.data.students;

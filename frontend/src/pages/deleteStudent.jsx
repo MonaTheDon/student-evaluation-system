@@ -13,11 +13,11 @@ const DeleteStudent = () => {
 
   useEffect(() => {
     // Fetch the mentor associated with the student being deleted
-    axios.get(`http://localhost:5555/students/${id}`)
+    axios.get(`${window.location.origin}students/${id}`)
       .then(response => {
         const mentorId = response.data.mentor_id;
         // Check if deleting the student would leave the mentor with less than 3 students
-        axios.get(`http://localhost:5555/mentors/${mentorId}`)
+        axios.get(`${window.location.origin}/mentors/${mentorId}`)
           .then(mentorResponse => {
             const mentorStudents = mentorResponse.data.students;
             if (mentorStudents && mentorStudents.length <=3) {
@@ -39,7 +39,7 @@ const DeleteStudent = () => {
   const handleDeleteStudent = () => {
     setLoading(true);
     axios
-      .delete(`http://localhost:5555/students/${id}`)
+      .delete(`${window.location.origin}/students/${id}`)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Student Record Deleted successfully', { variant: 'success' });

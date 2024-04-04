@@ -20,7 +20,7 @@ const editStudent = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`http://localhost:5555/students/${id}`)
+    axios.get(`${window.location.origin}/students/${id}`)
     .then((response) => {
         setName(response.data.student_name)
         setMentorID(response.data.mentor_id);
@@ -50,7 +50,7 @@ const editStudent = () => {
     const jsonData = JSON.stringify(data);
     console.log(jsonData);
     axios
-      .put(`http://localhost:5555/students/${id}`, jsonData,{
+      .put(`${window.location.origin}/students/${id}`, jsonData,{
         headers: { 'Content-Type': 'application/json' }})
       .then(() => {
         setLoading(false);

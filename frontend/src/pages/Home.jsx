@@ -21,7 +21,7 @@ const Home = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get('http://localhost:5555/students')
+      .get(`${window.location.origin}/students`)
       .then((response) => {
         setStudents(response.data.data);
       })

@@ -23,17 +23,17 @@ app.use(express.json());
 
 //middleware for handling cors policy
 //allow all origings with deffaukt of cors(*)
-// app.use(cors());
+app.use(cors());
 
 // OR allow custom origings(better option)
-app.use(
-    cors({
-        origin:'http://localhost:3000',
-        methods:['GET','POST','PUT','DELETE'],
-        allowedHeaders:['Content-Type'],
-    }
-    )
-);
+// app.use(
+//     cors({
+//         origin:'http://localhost:3000',
+//         methods:['GET','POST','PUT','DELETE'],
+//         allowedHeaders:['Content-Type'],
+//     }
+//     )
+// );
 
 app.get('/',(request,response)=>{
     console.log(request)
