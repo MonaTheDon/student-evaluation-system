@@ -33,7 +33,7 @@ const CreateStudent = () => {
       const mappedMentorID = mentorMap[mentor_id];
   
       // Check if the mentor has already 4 students
-      axios.get(`https://student-evaluation-system-backendserver.vercel.app/mentors/${mappedMentorID}`) // Use mapped _id here
+      axios.get(`https://student-evaluation-system-backendserver-3gnyr4l24.vercel.app/mentors/${mappedMentorID}`) // Use mapped _id here
         .then(response => {
             console.log('Mentor Data:', response.data);
             const mentorStudents = response.data.students;
@@ -50,7 +50,7 @@ const CreateStudent = () => {
             };
             setLoading(true);
             const jsonData = JSON.stringify(data);
-            axios.post('https://student-evaluation-system-backendserver.vercel.app/students', jsonData, {
+            axios.post('https://student-evaluation-system-backendserver-3gnyr4l24.vercel.app/students', jsonData, {
               headers: { 'Content-Type': 'application/json' }
             })
               .then(() => {

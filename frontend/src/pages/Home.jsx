@@ -21,7 +21,7 @@ const Home = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`https://student-evaluation-system-backendserver.vercel.app/students`)
+      .get(`https://student-evaluation-system-backendserver-3gnyr4l24.vercel.app/students`)
       .then((response) => {
         setStudents(response.data.data);
       })
