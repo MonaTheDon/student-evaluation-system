@@ -12,7 +12,7 @@ const showStudent = () => {
     useEffect(() => {
       setLoading(true);
       axios
-        .get(`${window.location.origin}/students/${id}`)
+        .get(`https://student-evaluation-system-backendserver.vercel.app/students/${id}`)
         .then((response) => {
           setStudents(response.data);
           setLoading(false);

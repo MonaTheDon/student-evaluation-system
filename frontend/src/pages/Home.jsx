@@ -21,7 +21,7 @@ const Home = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${window.location.origin}/students`)
+      .get(`https://student-evaluation-system-backendserver.vercel.app/students`)
       .then((response) => {
         setStudents(response.data.data);
       })
