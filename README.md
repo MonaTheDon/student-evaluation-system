@@ -1,13 +1,14 @@
-# Evaluation Dashboard App - Mentor View
+# Student Evaluation Dashboard - Mentor View (MERN)
 
 This project is a web application designed to provide a complete mentor-view solution for the evaluation of students for a semester-long project in college.
- 
+ ## Deployed Link: 
+https://student-evaluation-system.vercel.app/
 
 ## Features
 
 - **View Students:** Mentors can view all students and marks assigned to them with filters for students whose marks are yet to be assigned or already assigned.
-  ![image](https://github.com/MonaTheDon/student-evaluation-system/assets/104318895/a2e95aa0-5fda-4c62-b60b-a65283c59375)
-  ![image](https://github.com/MonaTheDon/student-evaluation-system/assets/104318895/8cd9dfba-51ed-4360-9ebf-18d05953ff7b)
+  ![image](https://github.com/MonaTheDon/student-evaluation-system/assets/104318895/3e97216f-842d-4119-b60c-468556f1108d)
+  ![image](https://github.com/MonaTheDon/student-evaluation-system/assets/104318895/1f7650e5-d976-4ffc-b7cf-862afe6a0d64)
 
 - **Add Students:** Mentors can add students they are interested in evaluating. Each mentor can accommodate a minimum of 3 and a maximum of 4 students at a time. No two mentors can assign the same student during the evaluation period.
    ![image](https://github.com/MonaTheDon/student-evaluation-system/assets/104318895/3de1b98c-0efd-41eb-ac51-9738ad190c74)
