@@ -16,6 +16,7 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [showType, setShowType] = useState('table');
   const [filter, setFilter] = useState('all'); // Add a state for filter
+  const [lockMarks, setLockMarks] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -29,6 +30,10 @@ const Home = () => {
       })
       .finally(() => setLoading(false));
   }, []);
+
+  const toggleLockMarks = () => {
+    setLockMarks(!lockMarks);
+  };
 
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
@@ -60,7 +65,13 @@ const Home = () => {
         >
           Card
         </button>
-        <DownloadStudentsPDF /> 
+        <DownloadStudentsPDF />
+        <button
+          className='bg-yellow-300 hover:bg-yellow-600 px-4 py-1 rounded-lg' 
+          onClick={toggleLockMarks} 
+        >
+          {lockMarks ? 'Unlock Marks' : 'Lock Marks'} 
+        </button>
       </div>
       <div className='flex justify-between items-center'>
         <h1 className='text-3xl my-8'>Students List</h1>
