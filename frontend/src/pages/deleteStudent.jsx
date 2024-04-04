@@ -13,11 +13,11 @@ const DeleteStudent = () => {
 
   useEffect(() => {
     // Fetch the mentor associated with the student being deleted
-    axios.get(`https://student-evaluation-system-backendserver-3gnyr4l24.vercel.app/students/${id}`)
+    axios.get(`https://student-evaluation-system-backendserver.vercel.app/students/${id}`)
       .then(response => {
         const mentorId = response.data.mentor_id;
         // Check if deleting the student would leave the mentor with less than 3 students
-        axios.get(`https://student-evaluation-system-backendserver-3gnyr4l24.vercel.app/mentors/${mentorId}`)
+        axios.get(`https://student-evaluation-system-backendserver.vercel.app/mentors/${mentorId}`)
           .then(mentorResponse => {
             const mentorStudents = mentorResponse.data.students;
             if (mentorStudents && mentorStudents.length <=3) {
@@ -39,7 +39,7 @@ const DeleteStudent = () => {
   const handleDeleteStudent = () => {
     setLoading(true);
     axios
-      .delete(`https://student-evaluation-system-backendserver-3gnyr4l24.vercel.app/students/${id}`)
+      .delete(`https://student-evaluation-system-backendserver.vercel.app/students/${id}`)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Student Record Deleted successfully', { variant: 'success' });

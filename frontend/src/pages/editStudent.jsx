@@ -20,7 +20,7 @@ const editStudent = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`https://student-evaluation-system-backendserver-3gnyr4l24.vercel.app/students/${id}`)
+    axios.get(`https://student-evaluation-system-backendserver.vercel.app/students/${id}`)
     .then((response) => {
         setName(response.data.student_name)
         setMentorID(response.data.mentor_id);
@@ -50,7 +50,7 @@ const editStudent = () => {
     const jsonData = JSON.stringify(data);
     console.log(jsonData);
     axios
-      .put(`https://student-evaluation-system-backendserver-3gnyr4l24.vercel.app/students/${id}`, jsonData,{
+      .put(`https://student-evaluation-system-backendserver.vercel.app/students/${id}`, jsonData,{
         headers: { 'Content-Type': 'application/json' }})
       .then(() => {
         setLoading(false);
