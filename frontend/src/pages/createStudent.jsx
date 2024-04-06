@@ -28,21 +28,28 @@ const CreateStudent = () => {
         enqueueSnackbar('Please select a mentor.', { variant: 'error' });
         return;
       }
-  
+    
+      // Validate marks
+      if (ideation < 0 || ideation > 10 || execution < 0 || execution > 10 || viva < 0 || viva > 10) {
+        enqueueSnackbar('Marks should be between 0 and 10.', { variant: 'error' });
+        return;
+      }
+    
       // Get mapped _id from selected mentor ID
       const mappedMentorID = mentorMap[mentor_id];
-  
+    
       // Check if the mentor has already 4 students
-      axios.get(`https://student-evaluation-system-backendserver.vercel.app/mentors/${mappedMentorID}`) // Use mapped _id here
+      axios.get(`https://student-evaluation-system-backendserver.vercel.app/mentors`)
         .then(response => {
-            console.log('Mentor Data:', response.data);
-            const mentorStudents = response.data.students;
-            if (mentorStudents && mentorStudents.length >= 4) {
+          const mentors = response.data.mentors;
+          const mentor = mentors.find(mentor => mentor._id === mappedMentorID);
+          console.log('Mentor Data:', mentor.students.length);
+          if (mentor && mentor.students && mentor.students.length >= 4) {
             enqueueSnackbar('A mentor can only accommodate a maximum of 4 students.', { variant: 'error' });
           } else {
             const data = {
               student_name,
-              mentor_id, // Use selected mentor ID here
+              mentor_id,
               ideation,
               viva,
               execution,
@@ -66,10 +73,11 @@ const CreateStudent = () => {
           }
         })
         .catch(error => {
-            enqueueSnackbar('Error fetching mentor data: ' + error.message, { variant: 'error' });
-            console.error(error);
+          enqueueSnackbar('Error fetching mentor data: ' + error.message, { variant: 'error' });
+          console.error(error);
         });
     };
+    
 
   return (
     <div className='p-4'>

@@ -11,24 +11,45 @@ const DeleteStudent = () => {
   const { id } = useParams();
   const { enqueueSnackbar } = useSnackbar();
 
+
   useEffect(() => {
     // Fetch the mentor associated with the student being deleted
-    axios.get(`https://student-evaluation-system-backendserver.vercel.app/students/${id}`)
+    axios.get(`https://student-evaluation-system-backendserver.vercel.app/students`)
       .then(response => {
-        const mentorId = response.data.mentor_id;
+        const students = response.data.data;
+        const student = students.find(student => student._id === id);
+        if (student){
+          const mentorId = student.mentor_id;
+
+      // Find all students with the same mentor_id as the mentor of the specific student
+          const mentorStudents = students.filter(student => student.mentor_id === mentorId);
+
+      // Get the length of mentorStudents array
+          const mentorStudentsLength = mentorStudents.length;
+          if (mentorStudentsLength<= 3) {
+                  enqueueSnackbar('A mentor must have at least 3 students. Cannot delete the student.', { variant: 'error' });
+                  navigate('/');
+                }
+        }
+        else{
+          enqueueSnackbar('Error fetching specific student data: ' + error.message, { variant: 'error' });
+        }
         // Check if deleting the student would leave the mentor with less than 3 students
-        axios.get(`https://student-evaluation-system-backendserver.vercel.app/mentors/${mentorId}`)
-          .then(mentorResponse => {
-            const mentorStudents = mentorResponse.data.students;
-            if (mentorStudents && mentorStudents.length <=3) {
-              enqueueSnackbar('A mentor must have at least 3 students. Cannot delete the student.', { variant: 'error' });
-              navigate('/');
-            }
-          })
-          .catch(error => {
-            enqueueSnackbar('Error fetching mentor data: ' + error.message, { variant: 'error' });
-            console.error(error);
-          });
+        // axios.get(`https://student-evaluation-system-backendserver.vercel.app/mentors`)
+        //   .then(mentorResponse => {
+        //     const mentors = mentorResponse.data.mentors;
+        //     console.log('Mentors Array:', mentors); // Debugging
+        //     const mentor = mentors.find(mentor => mentor._id === mentorId);
+        //     console.log('Mentor Data:', mentor); // Debugging
+        //     if (mentor && mentor.students && mentor.students.length <= 3) {
+        //       enqueueSnackbar('A mentor must have at least 3 students. Cannot delete the student.', { variant: 'error' });
+        //       navigate('/');
+        //     }
+        //   })
+        //   .catch(error => {
+        //     enqueueSnackbar('Error fetching mentor data: ' + error.message, { variant: 'error' });
+        //     console.error(error);
+        //   });
       })
       .catch(error => {
         enqueueSnackbar('Error fetching student data: ' + error.message, { variant: 'error' });

@@ -9,7 +9,7 @@ import StudentTable from '../components/home/StudentTable';
 import StudentCard from '../components/home/StudentCard';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import DownloadStudentsPDF from '../components/DownloadStudentsPDF';
+import DownloadPDF from '../components/DownloadPDF';
 
 const Home = () => {
   const [students, setStudents] = useState([]);
@@ -65,7 +65,7 @@ const Home = () => {
         >
           Card
         </button>
-        <DownloadStudentsPDF />
+        <DownloadPDF />
         <button
           className='bg-yellow-300 hover:bg-yellow-600 px-4 py-1 rounded-lg' 
           onClick={toggleLockMarks} 
